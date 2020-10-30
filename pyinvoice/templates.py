@@ -11,10 +11,13 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, Spacer
 
 from pyinvoice.components import SimpleTable, TableWithHeader, PaidStamp
 from pyinvoice.models import PDFInfo, Item, Transaction, InvoiceInfo, ServiceProviderInfo, ClientInfo
+from pyinvoice.constants import PDF_INFO_TITLE
+from pyinvoice.constants import PDF_INFO_AUTHOR
+from pyinvoice.constants import PDF_INFO_SUBJECT
 
 
 class SimpleInvoice(SimpleDocTemplate):
-    default_pdf_info = PDFInfo(title='Invoice', author='CiCiApp.com', subject='Invoice')
+    default_pdf_info = PDFInfo(title=PDF_INFO_TITLE, author=PDF_INFO_AUTHOR, subject=PDF_INFO_SUBJECT)
     precision = None
 
     def __init__(self, invoice_path, pdf_info=None, precision='0.01'):
