@@ -103,7 +103,7 @@ class Item(object):
     """
     Product/Item information
     """
-    def __init__(self, name, description, units, unit_price):
+    def __init__(self, description, units, amount):
         """
         Item modal init
         :param name: Item name
@@ -116,14 +116,10 @@ class Item(object):
         :type unit_price: Decimal or str or unicode or int or float
         :return:
         """
-        self.name = name
+        # self.name = name
         self.description = description
         self.units = units
-        self.unit_price = unit_price
-
-    @property
-    def amount(self):
-        return int(self.units) * Decimal(str(self.unit_price))
+        self.amount = amount
 
 
 class Transaction(object):
