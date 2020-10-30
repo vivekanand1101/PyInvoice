@@ -5,6 +5,7 @@ from decimal import Decimal
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER, TA_RIGHT
 from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, Spacer
@@ -20,9 +21,14 @@ class SimpleInvoice(SimpleDocTemplate):
     default_pdf_info = PDFInfo(title=PDF_INFO_TITLE, author=PDF_INFO_AUTHOR, subject=PDF_INFO_SUBJECT)
     precision = None
 
-    def __init__(self, invoice_path, pdf_info=None, precision='0.01'):
+    def __init__(self, invoice_path, pdf_info=None, precision='0.01', pagesize='letter'):
         if not pdf_info:
             pdf_info = self.default_pdf_info
+        _pagesize = None
+        if pagesize == 'letter':
+            _pagesize = letter
+        elif pagesize == 'A4':
+            _pagesize = A4
 
         SimpleDocTemplate.__init__(
             self,
